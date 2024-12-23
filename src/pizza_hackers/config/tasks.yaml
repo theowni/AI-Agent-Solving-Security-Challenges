@@ -1,0 +1,77 @@
+identify_and_fix_vulnerability_task:
+  description: >
+    Identify the vulnerability in the application based on 
+    current challenge status description and provided tools.
+    The current challenge status is available via ChallengeStatusReader tool.
+    Follow the provided hints to identify, understand and fix the vulnerability.
+
+    Fix vulnerability by using provided tools.
+    Make sure to not modify the logic significantly as existing features 
+    may stop working and tests may fail. Fix the code if any tests are failing.
+    
+    Validate the fix by checking the challenge status using ChallengeStatusReader 
+    tool. When you see the next level, move to the next task. 
+
+    During this task, provide a detailed description of steps taken to fix the vulnerability.
+    These steps should include the affected file, required code changes and any related implementation details.
+    These details will be used in the next task to explain the vulnerability.
+    
+    VERY IMPORTANT:
+    Your goal is to solve only one vulnerability.
+
+    The source code of the application is available in 
+    "../../Damn-Vulnerable-RESTaurant-API-Game" directory.
+  expected_output: >
+    VERY IMPORTANT:
+    Only one vulnerability has to be fixed.
+    The  task is considered completed when the next level is available 
+    via ChallengeStatusReader tool.
+    It is important to move to the next task when a new level is available.
+
+    Also, the challenge status does not containt any throwed exceptions, failing tests 
+    or other errors.
+  agent: pizza_hacker
+
+explain_vulnerability_task:
+  context: [identify_and_fix_vulnerability_task]
+  description: >
+    Your task is to explain exactly one vulnerability **fixed** as a part of 
+    "identify_and_fix_vulnerability_task". This is the first vulnerability 
+    appearing in the previous task associated with the challenge. You should 
+    explain its impact on the restaurant and how it was resolved in the application code. Make sure to 
+    include code changes required to fix the vulnerability, file paths 
+    and any related implementation details and reasoning. Perform this task after 
+    fixing the vulnerability to have a better understanding of the vulnerability.
+  expected_output: >
+    Replace variables enclosed with $$ characters with proper values 
+    obtained from the challenge description.
+
+    Your output has to use the template presented below:
+    ```
+    # Level $LEVEL_NUM$ - $LEVEL_NAME$
+    ## Description
+    <vulnerability_description>
+
+    ## Business Impact
+    <impact_on_the_restaurant>
+
+    ## Steps to fix the vulnerability
+    1. <step_1>
+      <step_1_details>
+    2. <step_2>
+      <step_2_details>
+    ...
+    ```
+  agent: pizza_hacker
+
+save_report_task:
+  context: [explain_vulnerability_task]
+  description: >
+    Save the markdown output of "explain_vulnerability_task" to the 
+    "./reports/" directory. The "./reports" directory already exists 
+    and you don't have to create it.
+    Name the file using the following format: "report-$LEVEL_NUM$.md"
+    where $LEVEL_NUM$ is the number of the level.
+  expected_output: >
+    A file with the report saved in the "./reports/" directory.
+  agent: pizza_hacker

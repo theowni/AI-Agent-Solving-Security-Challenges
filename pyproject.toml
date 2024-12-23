@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "pizza_hackers"
+version = "0.1.0"
+description = "pizza_hackers using crewAI"
+authors = ["Your Name"]
+
+[tool.poetry.scripts]
+pizza_hackers = "pizza_hackers.main:run"
+run_crew = "pizza_hackers.main:run"
+train = "pizza_hackers.main:train"
+replay = "pizza_hackers.main:replay"
+test = "pizza_hackers.main:test"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.poetry.dependencies] 
+python = ">=3.10,<=3.13"
+crewai = "0.86.0"
+crewai-tools = "0.17.0"
