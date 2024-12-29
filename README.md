@@ -30,12 +30,12 @@ Ensure you have Python >=3.10 <=3.13 installed on your system. Then, follow thes
 3. Change directory and clone this repository:
     ```bash
     cd ..
-    git clone [this-repo-url]
+    git clone https://github.com/theowni/AI-Agent-Solving-Security-Challenges.git
     ```
 
 4. Install the dependencies:
     ```bash
-    cd [the-dir]
+    cd AI-Agent-Solving-Security-Challenges
     crewai install
     ```
 
